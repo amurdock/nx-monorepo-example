@@ -9,7 +9,7 @@ const typeDefs = gql`
 
   extend type User @key(fields: "id") {
     id: ID! @external
-    accounts: [Account!]!
+    accounts: [Account]
   }
 `
 

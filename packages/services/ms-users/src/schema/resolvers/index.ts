@@ -1,12 +1,16 @@
-import { User, ResolverFn } from '../../graph'
-import { Context } from '../../context'
-
-const me: ResolverFn<User, undefined, Context, unknown> = async () =>
-  Promise.resolve({ id: '623b39685eb6ee35fd600495' })
+import { users } from '../../data'
 
 const resolvers = {
   Query: {
-    me,
+    me() {
+      // decode JWT token and lookup the user in Auth0
+      return users[0]
+    },
+  },
+  User: {
+    __resolveReference(reference: { id: string }) {
+      return users.find((user) => user.id === reference.id)
+    },
   },
 }
 
