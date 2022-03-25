@@ -1,0 +1,34 @@
+{
+  "root": "packages/lib/service-config",
+  "sourceRoot": "packages/lib/service-config/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/lib/service-config",
+        "tsConfig": "packages/lib/service-config/tsconfig.lib.json",
+        "packageJson": "packages/lib/service-config/package.json",
+        "main": "packages/lib/service-config/src/index.ts",
+        "assets": ["packages/lib/service-config/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/lib/service-config/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/lib/service-config"],
+      "options": {
+        "jestConfig": "packages/lib/service-config/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

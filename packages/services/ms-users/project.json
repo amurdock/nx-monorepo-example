@@ -1,0 +1,57 @@
+{
+  "root": "packages/services/ms-users",
+  "sourceRoot": "packages/services/ms-users/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/services/ms-users",
+        "main": "packages/services/ms-users/src/main.ts",
+        "tsConfig": "packages/services/ms-users/tsconfig.app.json",
+        "assets": []
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": []
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:node",
+      "options": {
+        "buildTarget": "ms-users:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/services/ms-users/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/services/ms-users"],
+      "options": {
+        "jestConfig": "packages/services/ms-users/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "generate": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "start-server-and-test 'nx serve ms-users' 'http-get://localhost:4000/graphql?query={ __schema { queryType { name } } }' 'graphql-codegen --config packages/services/ms-users/codegen.yml'"
+          }
+        ]
+      }
+    }
+  },
+  "tags": []
+}

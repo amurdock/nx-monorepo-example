@@ -14,7 +14,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@mode/service-config": ["packages/lib/service-config/src/index.ts"],
+      "@mode/service-logger": ["packages/lib/service-logger/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

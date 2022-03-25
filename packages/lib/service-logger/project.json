@@ -1,0 +1,34 @@
+{
+  "root": "packages/lib/service-logger",
+  "sourceRoot": "packages/lib/service-logger/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/lib/service-logger",
+        "tsConfig": "packages/lib/service-logger/tsconfig.lib.json",
+        "packageJson": "packages/lib/service-logger/package.json",
+        "main": "packages/lib/service-logger/src/index.ts",
+        "assets": ["packages/lib/service-logger/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/lib/service-logger/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/lib/service-logger"],
+      "options": {
+        "jestConfig": "packages/lib/service-logger/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

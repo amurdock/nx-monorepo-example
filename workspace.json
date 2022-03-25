@@ -1,4 +1,9 @@
 {
   "version": 2,
-  "projects": {}
+  "projects": {
+    "service-logger": "packages/lib/service-logger",
+    "ms-accounts": "packages/services/ms-accounts",
+    "ms-users": "packages/services/ms-users",
+    "service-config": "packages/lib/service-config"
+  }
 }

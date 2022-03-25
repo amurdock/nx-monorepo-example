@@ -1,0 +1,57 @@
+{
+  "root": "packages/services/ms-accounts",
+  "sourceRoot": "packages/services/ms-accounts/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/services/ms-accounts",
+        "main": "packages/services/ms-accounts/src/main.ts",
+        "tsConfig": "packages/services/ms-accounts/tsconfig.app.json",
+        "assets": []
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": []
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:node",
+      "options": {
+        "buildTarget": "ms-accounts:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/services/ms-accounts/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/services/ms-accounts"],
+      "options": {
+        "jestConfig": "packages/services/ms-accounts/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "generate": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "start-server-and-test 'nx serve ms-accounts' 'http-get://localhost:4000/graphql?query={ __schema { queryType { name } } }' 'graphql-codegen --config packages/services/ms-accounts/codegen.yml'"
+          }
+        ]
+      }
+    }
+  },
+  "tags": []
+}

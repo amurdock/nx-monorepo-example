@@ -1,0 +1,16 @@
+schema: http://localhost:4000
+overwrite: true
+generates:
+  packages/services/ms-accounts/src/graph.d.ts:
+    config:
+      contextType: ./context#Context
+      useIndexSignature: true
+      enumsAsTypes: true
+      maybeValue: T | undefined
+    plugins:
+      - add:
+          content: '/* eslint-disable */'
+      - add:
+          content: '/* !!AUTO GENERATED FILE, DO NOT CHANGE!! */'
+      - typescript
+      - typescript-resolvers
