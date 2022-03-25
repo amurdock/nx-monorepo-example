@@ -47,9 +47,10 @@
       "options": {
         "commands": [
           {
-            "command": "start-server-and-test 'nx serve ms-users' 'http-get://localhost:4000/graphql?query={ __schema { queryType { name } } }' 'graphql-codegen --config packages/services/ms-users/codegen.yml'"
+            "command": "graphql-codegen --config codegen.yml"
           }
-        ]
+        ],
+        "cwd": "packages/services/ms-users"
       }
     }
   },

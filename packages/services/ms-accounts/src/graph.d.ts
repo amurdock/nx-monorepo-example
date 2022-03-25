@@ -1,13 +1,12 @@
 /* eslint-disable */
 /* !!AUTO GENERATED FILE, DO NOT CHANGE!! */
-import { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql';
+import { GraphQLResolveInfo } from 'graphql';
 import { Context } from './context';
 export type Maybe<T> = T | undefined;
 export type InputMaybe<T> = T | undefined;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
-export type RequireFields<T, K extends keyof T> = Omit<T, K> & { [P in K]-?: NonNullable<T[P]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -15,7 +14,6 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  _Any: any;
 };
 
 export type Account = {
@@ -25,29 +23,10 @@ export type Account = {
   id: Scalars['ID'];
 };
 
-export type Query = {
-  __typename?: 'Query';
-  _entities: Array<Maybe<_Entity>>;
-  _service: _Service;
-};
-
-
-export type Query_EntitiesArgs = {
-  representations: Array<Scalars['_Any']>;
-};
-
 export type User = {
   __typename?: 'User';
-  accounts: Array<Account>;
+  accounts?: Maybe<Array<Maybe<Account>>>;
   id: Scalars['ID'];
-};
-
-export type _Entity = Account | User;
-
-export type _Service = {
-  __typename?: '_Service';
-  /** The sdl representing the federated service capabilities. Includes federation directives, removes federation types, and includes rest of full schema after schema directives have been applied */
-  sdl?: Maybe<Scalars['String']>;
 };
 
 export type WithIndex<TObject> = TObject & Record<string, any>;
@@ -124,12 +103,8 @@ export type ResolversTypes = ResolversObject<{
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   Float: ResolverTypeWrapper<Scalars['Float']>;
   ID: ResolverTypeWrapper<Scalars['ID']>;
-  Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']>;
   User: ResolverTypeWrapper<User>;
-  _Any: ResolverTypeWrapper<Scalars['_Any']>;
-  _Entity: ResolversTypes['Account'] | ResolversTypes['User'];
-  _Service: ResolverTypeWrapper<_Service>;
 }>;
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -138,39 +113,9 @@ export type ResolversParentTypes = ResolversObject<{
   Boolean: Scalars['Boolean'];
   Float: Scalars['Float'];
   ID: Scalars['ID'];
-  Query: {};
   String: Scalars['String'];
   User: User;
-  _Any: Scalars['_Any'];
-  _Entity: ResolversParentTypes['Account'] | ResolversParentTypes['User'];
-  _Service: _Service;
 }>;
-
-export type ExtendsDirectiveArgs = { };
-
-export type ExtendsDirectiveResolver<Result, Parent, ContextType = Context, Args = ExtendsDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
-
-export type ExternalDirectiveArgs = { };
-
-export type ExternalDirectiveResolver<Result, Parent, ContextType = Context, Args = ExternalDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
-
-export type KeyDirectiveArgs = {
-  fields: Scalars['String'];
-};
-
-export type KeyDirectiveResolver<Result, Parent, ContextType = Context, Args = KeyDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
-
-export type ProvidesDirectiveArgs = {
-  fields: Scalars['String'];
-};
-
-export type ProvidesDirectiveResolver<Result, Parent, ContextType = Context, Args = ProvidesDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
-
-export type RequiresDirectiveArgs = {
-  fields: Scalars['String'];
-};
-
-export type RequiresDirectiveResolver<Result, Parent, ContextType = Context, Args = RequiresDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
 export type AccountResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Account'] = ResolversParentTypes['Account']> = ResolversObject<{
   asset?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -179,43 +124,14 @@ export type AccountResolvers<ContextType = Context, ParentType extends Resolvers
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
-export type QueryResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
-  _entities?: Resolver<Array<Maybe<ResolversTypes['_Entity']>>, ParentType, ContextType, RequireFields<Query_EntitiesArgs, 'representations'>>;
-  _service?: Resolver<ResolversTypes['_Service'], ParentType, ContextType>;
-}>;
-
 export type UserResolvers<ContextType = Context, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = ResolversObject<{
-  accounts?: Resolver<Array<ResolversTypes['Account']>, ParentType, ContextType>;
+  accounts?: Resolver<Maybe<Array<Maybe<ResolversTypes['Account']>>>, ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-}>;
-
-export interface _AnyScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['_Any'], any> {
-  name: '_Any';
-}
-
-export type _EntityResolvers<ContextType = Context, ParentType extends ResolversParentTypes['_Entity'] = ResolversParentTypes['_Entity']> = ResolversObject<{
-  __resolveType: TypeResolveFn<'Account' | 'User', ParentType, ContextType>;
-}>;
-
-export type _ServiceResolvers<ContextType = Context, ParentType extends ResolversParentTypes['_Service'] = ResolversParentTypes['_Service']> = ResolversObject<{
-  sdl?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
 export type Resolvers<ContextType = Context> = ResolversObject<{
   Account?: AccountResolvers<ContextType>;
-  Query?: QueryResolvers<ContextType>;
   User?: UserResolvers<ContextType>;
-  _Any?: GraphQLScalarType;
-  _Entity?: _EntityResolvers<ContextType>;
-  _Service?: _ServiceResolvers<ContextType>;
 }>;
 
-export type DirectiveResolvers<ContextType = Context> = ResolversObject<{
-  extends?: ExtendsDirectiveResolver<any, any, ContextType>;
-  external?: ExternalDirectiveResolver<any, any, ContextType>;
-  key?: KeyDirectiveResolver<any, any, ContextType>;
-  provides?: ProvidesDirectiveResolver<any, any, ContextType>;
-  requires?: RequiresDirectiveResolver<any, any, ContextType>;
-}>;

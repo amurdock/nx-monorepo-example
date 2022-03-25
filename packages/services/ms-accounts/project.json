@@ -47,9 +47,10 @@
       "options": {
         "commands": [
           {
-            "command": "start-server-and-test 'nx serve ms-accounts' 'http-get://localhost:4000/graphql?query={ __schema { queryType { name } } }' 'graphql-codegen --config packages/services/ms-accounts/codegen.yml'"
+            "command": "graphql-codegen --config codegen.yml"
           }
-        ]
+        ],
+        "cwd": "packages/services/ms-accounts"
       }
     }
   },
